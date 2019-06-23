@@ -1,0 +1,24 @@
+{
+  "name": "ragemp-sandbox",
+  "version": "0.0.1",
+  "description": "Test server for learning and messing around with RAGEMP framework for GTA online",
+  "scripts": {
+    "start": "server.exe"
+  },
+  "author": "Nicholas Young",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {
+    "@types/ragemp-c": "https://github.com/CocaColaBear/types-ragemp-c/tarball/master",
+    "@types/ragemp-s": "https://github.com/CocaColaBear/types-ragemp-s/tarball/master",
+    "babel-eslint": "^10.0.2",
+    "eslint": "^6.0.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-config-prettier": "^5.0.0",
+    "eslint-plugin-import": "^2.17.3",
+    "eslint-plugin-jsx-a11y": "^6.2.1",
+    "eslint-plugin-prettier": "^3.1.0",
+    "eslint-plugin-react": "^7.13.0",
+    "prettier": "^1.18.2"
+  }
+}
