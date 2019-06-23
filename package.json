@@ -7,6 +7,7 @@
   },
   "author": "Nicholas Young",
   "license": "ISC",
+  "repository": "https://github.com/yungnickyoung/RAGE-MP-Test-Server.git",
   "dependencies": {},
   "devDependencies": {
     "@types/ragemp-c": "https://github.com/CocaColaBear/types-ragemp-c/tarball/master",

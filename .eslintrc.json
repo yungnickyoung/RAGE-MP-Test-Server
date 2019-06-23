@@ -17,9 +17,9 @@
     "max-len": [
       "warn",
       {
-        "code": 80,
+        "code": 100,
         "tabWidth": 2,
-        "comments": 80,
+        "comments": 100,
         "ignoreComments": false,
         "ignoreTrailingComments": true,
         "ignoreUrls": true,
@@ -27,6 +27,10 @@
         "ignoreTemplateLiterals": true,
         "ignoreRegExpLiterals": true
       }
-    ]
+    ],
+    "no-undef": 1,
+    "no-unused-vars": 1,
+    "no-param-reassign": 1,
+    "no-restricted-globals": 0
   }
 }
