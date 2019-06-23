@@ -12,7 +12,7 @@ mp.events.addCommand('getpos', (player, fullText) => {
 });
 
 /**
- * tp
+ * tp [x] [y] [z]
  *
  * Teleports the player to the specified x-y-z coordinates.
  */
@@ -36,12 +36,13 @@ mp.events.addCommand('tp', (player, fullText, x, y, z) => {
 });
 
 /**
- * me
+ * me [message]
  *
  * Creates a label over the player's position with the entered fullText.
  * TODO:
  *  - Label moves with the player
  *  - Label expires after 5-10s
+ *  - Allow for multiple consecutive /me's, with messages being stacked (must make max tho)
  */
 commandList.me = 'Used to show yourself performing an action';
 mp.events.addCommand('me', (player, fullText) => {
