@@ -6,7 +6,7 @@ const commandList = {};
  *
  * Outputs the player's current position to their chatbox
  */
-commandList.getpos = 'Tells you your current position in the world';
+commandList.getpos = 'Your current position in the world';
 mp.events.addCommand('getpos', (player, fullText) => {
   player.outputChatBox(`${player.position}`);
 });
@@ -16,11 +16,11 @@ mp.events.addCommand('getpos', (player, fullText) => {
  *
  * Teleports the player to the specified x-y-z coordinates.
  */
-commandList.tp = 'Teleports you to the given location in the world';
+commandList.tp = 'Teleport to the given location in the world';
 mp.events.addCommand('tp', (player, fullText, x, y, z) => {
   // Validate args
   if (!x || !y || !z) {
-    player.outputChatBox('Usage: ./tp [x] [y] [z]');
+    player.outputChatBox('Usage: /tp [x] [y] [z]');
     return;
   }
 
@@ -44,7 +44,7 @@ mp.events.addCommand('tp', (player, fullText, x, y, z) => {
  *  - Label expires after 5-10s
  *  - Allow for multiple consecutive /me's, with messages being stacked (must make max tho)
  */
-commandList.me = 'Used to show yourself performing an action';
+commandList.me = 'Show yourself performing an action';
 mp.events.addCommand('me', (player, fullText) => {
   // Validate message
   if (!fullText) {
@@ -54,6 +54,49 @@ mp.events.addCommand('me', (player, fullText) => {
 
   // Create label at player's position
   mp.labels.new(`${fullText}`, player.position, { drawDistance: 40 });
+});
+
+/**
+ * kill [playerId]
+ *
+ * Kills the player specified.
+ */
+commandList.kill = 'Kill the player specified';
+mp.events.addCommand('kill', (player, fullText, targetPlayerID) => {
+  // Validate target player ID
+  if (!targetPlayerID || isNaN(targetPlayerID)) {
+    player.outputChatBox('Usage: /kill [playerID]');
+    return;
+  }
+
+  // Disallow negative ID's
+  if (targetPlayerID < 0) {
+    player.outputChatBox('Invalid ID');
+    return;
+  }
+
+  const targetPlayer = mp.players.at(targetPlayerID);
+
+  if (targetPlayer) {
+    targetPlayer.health = 0;
+    player.outputChatBox(`Killed player '${targetPlayer.name}' (ID ${targetPlayer.id})`);
+  } else {
+    player.outputChatBox(`Player with ID ${targetPlayerID} not found`);
+  }
+});
+
+/**
+ * suicide
+ *
+ * Kills the player using the command.
+ */
+commandList.suicide = 'Kill yourself';
+mp.events.addCommand('suicide', player => {
+  if (player.health === 0) {
+    player.outputChatBox("You're already dead!");
+  } else {
+    player.health = 0;
+  }
 });
 
 /**
