@@ -1,68 +1,71 @@
+const { spawnPoints } = require('./configs/spawn_points.json');
+
 // Maps all commands to descriptions. Used in the '/commands' command
-const commandList = {};
+const commandList = [];
 
 /**
  * getpos
  *
- * Outputs the player's current position to their chatbox
+ * Outputs the player's current position to their chatbox.
  */
-commandList.getpos = 'Your current position in the world';
-mp.events.addCommand('getpos', (player, fullText) => {
+commandList.push(['getpos', 'get your current position in the world']);
+mp.events.addCommand('getpos', player => {
   player.outputChatBox(`${player.position}`);
 });
 
 /**
- * tp [x] [y] [z]
+ * heal
  *
- * Teleports the player to the specified x-y-z coordinates.
+ * Heals the player's health and armor
  */
-commandList.tp = 'Teleport to the given location in the world';
-mp.events.addCommand('tp', (player, fullText, x, y, z) => {
-  // Validate args
-  if (!x || !y || !z) {
-    player.outputChatBox('Usage: /tp [x] [y] [z]');
-    return;
-  }
-
-  // Ensure coordinates are numeric
-  if (isNaN(x) || isNaN(y) || isNaN(z)) {
-    player.outputChatBox('Coordinates must be numbers!');
-    return;
-  }
-
-  // Teleport player to new position
-  player.position = new mp.Vector3(+x, +y, +z);
-  player.outputChatBox(`You've been teleported to: ${player.position}`);
+commandList.push(['heal', 'restore health and armor']);
+mp.events.addCommand('heal', player => {
+  player.health = 100;
+  player.armor = 100;
+  player.outputChatBox("You've been healed.");
 });
 
 /**
- * me [message]
+ * help [page]
  *
- * Creates a label over the player's position with the entered fullText.
- * TODO:
- *  - Label moves with the player
- *  - Label expires after 5-10s
- *  - Allow for multiple consecutive /me's, with messages being stacked (must make max tho)
+ * Lists all available commands and their descriptions to the player's chatbox.
  */
-commandList.me = 'Show yourself performing an action';
-mp.events.addCommand('me', (player, fullText) => {
-  // Validate message
-  if (!fullText) {
-    player.outputChatBox('Usage: /me [message]');
+commandList.push(['help', 'list all available commands. Usage: /help [page]']);
+mp.events.addCommand('help', (player, page) => {
+  // Validate page number
+  if (!page || isNaN(page)) {
+    player.outputChatBox(`Usage: /help [page]`);
     return;
   }
 
-  // Create label at player's position
-  mp.labels.new(`${fullText}`, player.position, { drawDistance: 40 });
+  if (page < 1 || page > commandList.length / 4 + 1) {
+    player.outputChatBox('Invalid page number.');
+    return;
+  }
+
+  // Floor page number in case player enters a float
+  page = Math.floor(page);
+
+  player.outputChatBox(`--------------- Page ${page}/${(commandList.length - 1) / 4 + 1} ---------------`);
+
+  for (let i = 0; i < 4; i++) {
+    // If no more commands, exit the loop
+    if (i + (page - 1) * 4 >= commandList.length) {
+      return;
+    }
+
+    const command = commandList[i + (page - 1) * 4];
+    player.outputChatBox(`${command[0]}: ${command[1]}`);
+  }
 });
 
 /**
- * kill [playerId]
+ * kill [playerID]
  *
  * Kills the player specified.
  */
-commandList.kill = 'Kill the player specified';
-mp.events.addCommand('kill', (player, fullText, targetPlayerID) => {
+commandList.push(['kill', 'kill the player specified']);
+mp.events.addCommand('kill', (player, targetPlayerID) => {
   // Validate target player ID
   if (!targetPlayerID || isNaN(targetPlayerID)) {
     player.outputChatBox('Usage: /kill [playerID]');
@@ -86,11 +89,67 @@ mp.events.addCommand('kill', (player, fullText, targetPlayerID) => {
 });
 
 /**
+ * me [message]
+ *
+ * Creates a label over the player's position with the entered fullText.
+ * TODO:
+ *  - Label moves with the player
+ *  - Label expires after 5-10s
+ *  - Allow for multiple consecutive /me's, with messages being stacked (must make max tho)
+ */
+commandList.push(['me', 'show yourself performing an action']);
+mp.events.addCommand('me', (player, action) => {
+  // Validate message
+  if (!action) {
+    player.outputChatBox('Usage: /me [action]');
+    return;
+  }
+
+  // Create label at player's position
+  mp.labels.new(`${action}`, player.position, { drawDistance: 40 });
+});
+
+/**
+ * respawn [spawnID]
+ *
+ * Respawns the player.
+ */
+commandList.push(['respawn', 'respawn at specified spawn point']);
+mp.events.addCommand('respawn', (player, spawnID) => {
+  // Validate spawn point ID
+  if (!spawnID) {
+    player.outputChatBox('Usage: /respawn [spawnID]');
+    return;
+  }
+
+  if (isNaN(spawnID) || spawnID < 0 || spawnID >= spawnPoints.length) {
+    player.outputChatBox('Invalid spawn ID. Use /spawns to see a list of valid spawns.');
+    return;
+  }
+
+  const spawnPoint = spawnPoints[spawnID];
+  player.spawn(new mp.Vector3(spawnPoint.x, spawnPoint.y, spawnPoint.z));
+});
+
+/**
+ * spawns
+ *
+ * List all spawn points.
+ */
+commandList.push(['spawns', 'list all spawn points']);
+mp.events.addCommand('spawns', player => {
+  // eslint-disable-next-line no-restricted-syntax
+  for (const spawnPoint of spawnPoints) {
+    player.outputChatBox(`[${spawnPoint.id}] ${spawnPoint.label} (${spawnPoint.x}, ${spawnPoint.y}, ${spawnPoint.z})`);
+  }
+});
+
+/**
  * suicide
  *
  * Kills the player using the command.
  */
-commandList.suicide = 'Kill yourself';
+commandList.push(['suicide', 'kill yourself']);
 mp.events.addCommand('suicide', player => {
   if (player.health === 0) {
     player.outputChatBox("You're already dead!");
@@ -100,13 +159,25 @@ mp.events.addCommand('suicide', player => {
 });
 
 /**
- * commands
+ * tp [x] [y] [z]
  *
- * Lists all available commands and their descriptions to the player's chatbox.
+ * Teleports the player to the specified x-y-z coordinates.
  */
-commandList.commands = 'Lists all available commands';
-mp.events.addCommand('commands', (player, fullText) => {
-  Object.keys(commandList).forEach(command => {
-    player.outputChatBox(`${command}: ${commandList[command]}`);
-  });
+commandList.push(['tp', 'teleport to the given location in the world']);
+mp.events.addCommand('tp', (player, fullText, x, y, z) => {
+  // Validate args
+  if (!x || !y || !z) {
+    player.outputChatBox('Usage: /tp [x] [y] [z]');
+    return;
+  }
+
+  // Ensure coordinates are numeric
+  if (isNaN(x) || isNaN(y) || isNaN(z)) {
+    player.outputChatBox('Coordinates must be numbers!');
+    return;
+  }
+
+  // Teleport player to new position
+  player.position = new mp.Vector3(+x, +y, +z);
+  player.outputChatBox(`You've been teleported to: ${player.position}`);
 });
