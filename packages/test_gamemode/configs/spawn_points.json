@@ -1,5 +1,6 @@
 {
-    "spawnPoints": [
+    "spawnPoints": 
+    [
         { 
             "id": 0, 
             "label": "Pink Cage", 

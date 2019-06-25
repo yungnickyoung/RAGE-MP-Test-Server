@@ -1,4 +1,5 @@
 const { spawnPoints } = require('./configs/spawn_points.json');
+const { vehicles } = require('./configs/vehicles.json');
 
 // Maps all commands to descriptions. Used in the '/commands' command
 const commandList = [];
@@ -180,4 +181,44 @@ mp.events.addCommand('tp', (player, fullText, x, y, z) => {
   // Teleport player to new position
   player.position = new mp.Vector3(+x, +y, +z);
   player.outputChatBox(`You've been teleported to: ${player.position}`);
+});
+
+/**
+ * vspawn [vehicle]
+ *
+ * Spawns the specified vehicle next to the player.
+ */
+commandList.push(['vspawn', 'spawn a vehicle']);
+mp.events.addCommand('vspawn', (player, vehicle) => {
+  // Validate vehicle name arg
+  if (!vehicle) {
+    player.outputChatBox('Usage: /vspawn [vehicle]');
+    return;
+  }
+
+  vehicle = vehicle.toUpperCase();
+
+  // Ensure vehicle exists in list of vehicles
+  let found = false;
+  for (const vType in vehicles) {
+    for (const v of vehicles[vType]) {
+      // eslint-disable-next-line eqeqeq
+      if (v == vehicle) {
+        found = true;
+        break;
+      }
+    }
+    if (found) break;
+  }
+
+  // Vehicle name not found --> return
+  if (!found) {
+    player.outputChatBox(`Vehicle '${vehicle}' not found.`);
+    return;
+  }
+
+  const pos = player.position;
+  pos.x += 2;
+
+  mp.vehicles.new(mp.joaat(vehicle), pos);
 });

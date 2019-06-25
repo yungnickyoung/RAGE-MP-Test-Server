@@ -32,6 +32,8 @@
     "no-unused-vars": 1,
     "no-param-reassign": 1,
     "no-restricted-globals": 0,
-    "no-plusplus": 0
+    "no-plusplus": 0,
+    "no-restricted-syntax": 0,
+    "guard-for-in": 0
   }
 }
