@@ -1,0 +1,17 @@
+{
+    "weatherTypes":
+    [
+        "EXTRASUNNY",
+        "CLEAR",
+        "CLOUDS", 
+        "SMOG",
+        "FOGGY",
+        "OVERCAST",
+        "RAIN",
+        "THUNDER",
+        "CLEARING",
+        "SNOW",
+        "BLIZZARD",
+        "SNOWLIGHT"
+    ]
+} 

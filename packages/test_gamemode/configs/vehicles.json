@@ -1,7 +1,7 @@
 {
     "vehicles": 
     {
-        "Plane":
+        "plane":
         [ 
             "ALPHAZ1",
             "BOMBUSHKA",
@@ -35,7 +35,7 @@
             "VELUM2",
             "VESTRA"
         ],
-        "Super": 
+        "super": 
         [
             "CYCLONE",
             "VISIONE",
@@ -72,7 +72,7 @@
             "XA21",
             "ZENTORNO"
         ],
-        "Helicopter":
+        "helicopter":
         [
             "HAVOK",
             "HUNTER",
@@ -99,7 +99,7 @@
             "VALKYRIE2",
             "VOLATUS"
         ],
-        "SportsClassic":
+        "sportsClassic":
         [
             "RAPIDGT3",
             "RETINUE",
@@ -126,14 +126,14 @@
             "TORNADO4",
             "ZTYPE"
         ],
-        "Military":
+        "military":
         [
             "VIGILANTE",
             "APC",
             "HALFTRACK",
             "TRAILERSMALL2"
         ],
-        "Service":
+        "service":
         [
             "AIRBUS",
             "AIRTUG",
@@ -158,7 +158,7 @@
             "UTILLITRUCK2",
             "UTILLITRUCK3"
         ],
-        "Motorcycle":
+        "motorcycle":
         [
             "AKUMA",
             "AVARUS",
@@ -209,7 +209,7 @@
             "ZOMBIEA",
             "ZOMBIEB"
         ],
-        "Sport":
+        "sport":
         [
             "ALPHA",
             "BANSHEE",
@@ -258,7 +258,7 @@
             "TROPOS",
             "VERLIERER2"
         ],
-        "Emergency":
+        "emergency":
         [
             "AMBULANCE",
             "BARRACKS",
@@ -284,7 +284,7 @@
             "SHERIFF",
             "SHERIFF2"
         ],
-        "Trailer":
+        "trailer":
         [
             "ARMYTANKER",
             "ARMYTRAILER",
@@ -309,7 +309,7 @@
             "TRFLAT",
             "TVTRAILER"
         ],
-        "Sedan":
+        "sedan":
         [
             "ASEA",
             "ASEA2",
@@ -348,7 +348,7 @@
             "WARRENER",
             "WASHINGTON"
         ],
-        "SUV":
+        "suv":
         [
             "BALLER",
             "BALLER2",
@@ -377,7 +377,7 @@
             "XLS",
             "XLS2"
         ],
-        "Truck":
+        "truck":
         [
             "BENSON",
             "BIFF",
@@ -411,7 +411,7 @@
             "TOWTRUCK",
             "TOWTRUCK2"
         ],
-        "Offroad":
+        "offroad":
         [
             "BFINJECTION",
             "BIFTA",
@@ -450,7 +450,7 @@
             "TROPHYTRUCK",
             "TROPHYTRUCK2"
         ],
-        "Pickup":
+        "pickup":
         [
             "BISON",
             "BISON2",
@@ -462,7 +462,7 @@
             "SADLER",
             "SADLER2"
         ],
-        "Muscle":
+        "muscle":
         [
             "BLADE",
             "BTYPE2",
@@ -502,7 +502,7 @@
             "VOODOO",
             "VOODOO2"
         ],
-        "Compact":
+        "compact":
         [
             "BLISTA",
             "BRIOSO",
@@ -513,7 +513,7 @@
             "PRAIRIE",
             "RHAPSODY"
         ],
-        "Bicycle":
+        "bicycle":
         [
             "BMX",
             "CRUISER",
@@ -523,7 +523,7 @@
             "TRIBIKE2",
             "TRIBIKE3"
         ],
-        "Van":
+        "van":
         [
             "BURRITO",
             "BURRITO2",
@@ -551,13 +551,13 @@
             "YOUGA",
             "YOUGA2"
         ],
-        "Utility":
+        "utility":
         [
             "CADDY3",
             "TRAILERLARGE",
             "TRAILERS4"
         ],
-        "Coupe":
+        "coupe":
         [
             "COGCABRIO",
             "EXEMPLAR",
@@ -574,7 +574,7 @@
             "ZION",
             "ZION2"
         ],
-        "Boat":
+        "boat":
         [
             "DINGHY",
             "DINGHY2",
@@ -598,7 +598,7 @@
             "TROPIC2",
             "TUG"
         ],
-        "Train":
+        "train":
         [
             "FREIGHT",
             "FREIGHTCAR",
@@ -608,7 +608,7 @@
             "METROTRAIN",
             "TANKERCAR"
         ],
-        "Commercial":
+        "commercial":
         [
             "HAULER2",
             "PHANTOM3"
