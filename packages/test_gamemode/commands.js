@@ -111,6 +111,16 @@ mp.events.addCommand('me', (player, action) => {
 });
 
 /**
+ * quit
+ *
+ * Disconnects the player.
+ */
+commandList.push(['quit', 'disconnect from the server']);
+mp.events.addCommand('quit', player => {
+  player.kick();
+});
+
+/**
  * respawn [spawnID]
  *
  * Respawns the player.

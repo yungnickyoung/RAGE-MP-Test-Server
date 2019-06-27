@@ -41,3 +41,13 @@ mp.events.add('playerDeath', player => {
 mp.events.add('playerCommand', (player, command) => {
   player.outputChatBox(`${command} is not a valid command. Use /help to find a list of commands.`);
 });
+
+/**
+ * playerJoin
+ *
+ * Welcomes the player and spawns them in.
+ */
+mp.events.add('playerJoin', player => {
+  player.outputChatBox(`Welcome to the server, ${player.name}!`);
+  player.spawn(spawnPoints[Math.floor(Math.random() * spawnPoints.length)]);
+});
