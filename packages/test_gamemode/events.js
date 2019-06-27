@@ -49,5 +49,6 @@ mp.events.add('playerCommand', (player, command) => {
  */
 mp.events.add('playerJoin', player => {
   player.outputChatBox(`Welcome to the server, ${player.name}!`);
-  player.spawn(spawnPoints[Math.floor(Math.random() * spawnPoints.length)]);
+  const spawnPoint = spawnPoints[Math.floor(Math.random() * spawnPoints.length)];
+  player.spawn(new mp.Vector3(spawnPoint.x, spawnPoint.y, spawnPoint.z));
 });

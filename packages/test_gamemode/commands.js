@@ -47,7 +47,7 @@ mp.events.addCommand('help', (player, page) => {
   // Floor page number in case player enters a float
   page = Math.floor(page);
 
-  player.outputChatBox(`--------------- Page ${page}/${(commandList.length - 1) / 4 + 1} ---------------`);
+  player.outputChatBox(`--------------- Page ${page}/${Math.floor((commandList.length - 1) / 4) + 1} ---------------`);
 
   for (let i = 0; i < 4; i++) {
     // If no more commands, exit the loop
@@ -231,4 +231,10 @@ mp.events.addCommand('vspawn', (player, vehicle) => {
   pos.x += 2;
 
   mp.vehicles.new(mp.joaat(vehicle), pos);
+});
+
+mp.events.addCommand('testload', (player, fullText, x, y, z, ipl) => {
+  const pos = new mp.Vector3(parseFloat(x), parseFloat(y), parseFloat(z));
+  player.position = pos;
+  player.call('loadinterior', [pos.x, pos.y, pos.z, ipl]);
 });
