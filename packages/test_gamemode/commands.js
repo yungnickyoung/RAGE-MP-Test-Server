@@ -23,7 +23,6 @@ commandList.push(['heal', 'restore health and armor']);
 mp.events.addCommand('heal', player => {
   player.health = 100;
   player.armor = 100;
-  player.outputChatBox("You've been healed.");
 });
 
 /**
@@ -39,7 +38,7 @@ mp.events.addCommand('help', (player, page) => {
     return;
   }
 
-  if (page < 1 || page > commandList.length / 4 + 1) {
+  if (page < 1 || page > Math.floor((commandList.length - 1) / 4) + 1) {
     player.outputChatBox('Invalid page number.');
     return;
   }
@@ -194,6 +193,21 @@ mp.events.addCommand('tp', (player, fullText, x, y, z) => {
 });
 
 /**
+ * vfix
+ *
+ * Fixes the vehicle the player is in.
+ */
+commandList.push(['vfix', "fix the vehicle you're in"]);
+mp.events.addCommand('vfix', player => {
+  if (!player.vehicle) {
+    player.outputChatBox('You must be in a vehicle to use this!');
+    return;
+  }
+
+  player.vehicle.repair();
+});
+
+/**
  * vspawn [vehicle]
  *
  * Spawns the specified vehicle next to the player.
@@ -231,10 +245,4 @@ mp.events.addCommand('vspawn', (player, vehicle) => {
   pos.x += 2;
 
   mp.vehicles.new(mp.joaat(vehicle), pos);
-});
-
-mp.events.addCommand('testload', (player, fullText, x, y, z, ipl) => {
-  const pos = new mp.Vector3(parseFloat(x), parseFloat(y), parseFloat(z));
-  player.position = pos;
-  player.call('loadinterior', [pos.x, pos.y, pos.z, ipl]);
 });

@@ -8,9 +8,3 @@
 // mp.game.streaming.requestIpl('fiblobbyfake');
 // mp.game.streaming.requestIpl('jewel2fake');
 // mp.game.streaming.requestIpl('sp1_10_fake_interior');
-
-mp.events.add('loadinterior', (x, y, z, ipl) => {
-  const interior = mp.game.interior.getInteriorAtCoords(x, y, z);
-  // mp.game.streaming.requestIpl(`"${ipl}"`);
-  mp.game.interior.refreshInterior(interior);
-});

@@ -11,6 +11,7 @@ function updateWeather() {
   // Cycle to next weather pattern based on current one
   currWeather = (currWeather + 1) % weatherTypes.length;
   mp.world.setWeatherTransition(weatherTypes[currWeather]);
+  console.log(`Weather is now ${weatherTypes[currWeather]}...`);
 }
 
 function updateTime() {
