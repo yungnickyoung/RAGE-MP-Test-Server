@@ -45,10 +45,44 @@ mp.events.add('playerCommand', (player, command) => {
 /**
  * playerJoin
  *
+ * Logs to the console when a player joins.
  * Welcomes the player and spawns them in.
  */
 mp.events.add('playerJoin', player => {
   player.outputChatBox(`Welcome to the server, ${player.name}!`);
-  const spawnPoint = spawnPoints[Math.floor(Math.random() * spawnPoints.length)];
+  // const spawnPoint = spawnPoints[Math.floor(Math.random() * spawnPoints.length)];
+  const spawnPoint = spawnPoints[0];
   player.spawn(new mp.Vector3(spawnPoint.x, spawnPoint.y, spawnPoint.z));
+  console.log(`${player.name} joined.`);
+});
+
+/**
+ * playerQuit
+ *
+ * Logs to the console when a player disconnects.
+ */
+mp.events.add('playerQuit', player => {
+  console.log(`${player.name} disconnected.`);
+});
+
+/**
+ * playerEnterColshape
+ *
+ * Handles entering a colshape
+ */
+mp.events.add('playerEnterColshape', (player, colshape) => {
+  if (colshape.getVariable('name') === 'colCarStorage') {
+    player.outputChatBox('enter');
+  }
+});
+
+/**
+ * playerExitColshape
+ *
+ * Handles leaving a colshape
+ */
+mp.events.add('playerExitColshape', (player, colshape) => {
+  if (colshape.getVariable('name') === 'colCarStorage') {
+    player.outputChatBox('exit');
+  }
 });

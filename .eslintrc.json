@@ -14,21 +14,7 @@
   "rules": {
     "jsx-a11y/href-no-hash": ["off"],
     "react/jsx-filename-extension": ["warn", { "extensions": [".js", ".jsx"] }],
-    "max-len": [
-      "warn",
-      {
-        "code": 120,
-        "tabWidth": 2,
-        "comments": 120,
-        "ignoreComments": false,
-        "ignoreTrailingComments": true,
-        "ignoreUrls": true,
-        "ignoreStrings": true,
-        "ignoreTemplateLiterals": true,
-        "ignoreRegExpLiterals": true
-      }
-    ],
-    "no-undef": 1,
+    "no-undef": 0,
     "no-unused-vars": 1,
     "no-param-reassign": 1,
     "no-restricted-globals": 0,
