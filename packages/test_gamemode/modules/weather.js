@@ -1,4 +1,4 @@
-const { weatherTypes } = require('./configs/weather_types.json');
+const { weatherTypes } = require('../configs/weather_types.json');
 
 // Initialize weather
 let currWeather = -1;

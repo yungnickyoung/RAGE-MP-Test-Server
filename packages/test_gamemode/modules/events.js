@@ -1,4 +1,4 @@
-const { spawnPoints } = require('./configs/spawn_points.json');
+const { spawnPoints } = require('../configs/spawn_points.json');
 
 /**
  * playerChat

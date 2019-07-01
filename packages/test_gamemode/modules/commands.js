@@ -1,5 +1,5 @@
-const { spawnPoints } = require('./configs/spawn_points.json');
-const { vehicles } = require('./configs/vehicles.json');
+const { spawnPoints } = require('../configs/spawn_points.json');
+const { vehicles } = require('../configs/vehicles.json');
 
 // Maps all commands to descriptions. Used in the '/commands' command
 const commandList = [];

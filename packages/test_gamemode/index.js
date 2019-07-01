@@ -1,5 +1,5 @@
-require('./events');
-require('./commands');
-require('./weather');
-require('./ipls');
-require('./colshape');
+require('./modules/events');
+require('./modules/commands');
+require('./modules/weather');
+require('./modules/ipls');
+require('./modules/colshape');
