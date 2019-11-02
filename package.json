@@ -10,7 +10,7 @@
   "repository": "https://github.com/yungnickyoung/RAGE-MP-Test-Server.git",
   "dependencies": {
     "chalk": "^2.4.2",
-    "mongoose": "^5.6.2"
+    "mongoose": "^5.7.5"
   },
   "devDependencies": {
     "@types/ragemp-c": "https://github.com/CocaColaBear/types-ragemp-c/tarball/master",
